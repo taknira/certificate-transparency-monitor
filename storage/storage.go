@@ -37,6 +37,11 @@ type STHWriter interface {
 	WriteSTH(ctx context.Context, l *ctlog.Log, sth *ct.SignedTreeHead, receivedAt time.Time, errs []error) error
 }
 
+// SCTWriter is an interface for storing SCTs received from a CT Log.
+type SCTWriter interface {
+	WriteSCT(ctx context.Context, l *ctlog.Log, sct *ct.SignedCertificateTimestamp, receivedAt time.Time, chain []*x509.Certificate, errs []error) error
+}
+
 // RootsWriter is an interface for storing root certificates retrieved from a CT get-roots call.
 type RootsWriter interface {
 	WriteRoots(ctx context.Context, l *ctlog.Log, roots []*x509.Certificate, receivedAt time.Time) error
